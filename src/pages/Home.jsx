@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("https://pizzeria-backend-18ut.onrender.com/api/pizzas")
+      .get(import.meta.env.VITE_API_URL+"/api/pizzas")
       .then((res) => setPizzas(res.data));
   }, []);
 

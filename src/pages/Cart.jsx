@@ -4,19 +4,19 @@ import axios from 'axios';
 export default function Cart() {
   const [items, setItems] = useState([]);
 
-  const fetchCart = () => axios.get('http://localhost:5000/api/cart')
+  const fetchCart = () => axios.get(import.meta.env.VITE_API_URL+"/api/cart")
     .then(res => setItems(res.data));
 
   useEffect(() => { fetchCart(); }, []);
 
   const updateQty = async (id, qty) => {
     if (qty < 1) return;
-    await axios.put(`http://localhost:5000/api/cart/${id}`, { quantity: qty });
+    await axios.put(import.meta.env.VITE_API_URL+`/api/cart/${id}`, { quantity: qty });
     fetchCart();
   };
 
   const removeItem = async (id) => {
-    await axios.delete(`http://localhost:5000/api/cart/${id}`);
+    await axios.delete(import.meta.env.VITE_API_URL+`/api/cart/${id}`);
     fetchCart();
   };
 
